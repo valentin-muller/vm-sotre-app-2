@@ -3,6 +3,7 @@ const _ = require("lodash");
 const fs = require("fs");
 const Product = require("../models/product");
 const { errorHandler } = require("../helpers/dbErrorHandler");
+const { db } = require("../models/product");
 
 exports.productById = (req, res, next, id) => {
   Product.findById(id).exec((err, product) => {
@@ -68,6 +69,20 @@ exports.create = (req, res) => {
         });
       }
       res.json(result);
+    });
+  });
+};
+
+exports.remove = (req, res) => {
+  let product = req.product;
+  product.remove((err, deletedProduct) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler(err),
+      });
+    }
+    res.json({
+      message: "Product deleted successfully",
     });
   });
 };
