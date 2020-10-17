@@ -3,6 +3,7 @@ const express = require('express')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
+const cors = require('cors');
 const expressValidator = require('express-validator')
 
 const app = express()
@@ -28,6 +29,7 @@ mongoose
     app.use(bodyParser.json())
     app.use(cookieParser())
     app.use(expressValidator());
+    app.use(cors());
 
     // routes middleware
     const authRoutes = require('./routes/auth')
