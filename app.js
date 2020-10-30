@@ -44,6 +44,9 @@ mongoose
     const productRoutes = require('./routes/product')
     app.use("/api", productRoutes);
 
+    const braintreeRoutes = require("./routes/braintree");
+    app.use('/api', braintreeRoutes)
+
 
     const port = process.env.PORT || 8000
     
